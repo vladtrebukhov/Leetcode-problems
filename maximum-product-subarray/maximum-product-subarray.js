@@ -11,7 +11,9 @@ var maxProduct = function(nums) {
     //If a zero is met, reset product to 1
     //Problem dependent on even or odd number of negative integers
     //[-3, -1, -10] -> loop forwards, max -3*-1 = 3, loop backwards, max -10*-1 = 10
-   
+    //[-2,-3,-2,4] -> -2, 6, -12, -48, 4, -8, 24, -48 = 24
+    
+    
         let prod = 1;
         let result = Math.max(...nums);
         
