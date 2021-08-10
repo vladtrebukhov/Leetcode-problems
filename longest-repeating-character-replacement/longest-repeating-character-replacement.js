@@ -6,8 +6,7 @@
 
 // s = "AABABBA", k = 1
 var characterReplacement = function(s, k) {
- 
-    let frequency = {}
+    let frequency = {};
     let left = 0;
     let longest = 0; 
     
