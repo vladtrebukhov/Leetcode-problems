@@ -2,30 +2,36 @@
  * @param {number[]} height
  * @return {number}
  */
+//height = [1,8,6,2,5,4,8,3,7]
+//49
 var maxArea = function(height) {
     if (!height) return 0;
-    //height = [1,8,6,2,5,4,8,3,7] -> 49
-    //height = [4,3,2,1,4] -> 16 16, 9, 4, 1
-    //height = [1, 1] -> 1
-    //height = [1, 2, 1] -> 2
     
+    //if first pointer smaller than second pointer, multiply distance between second and first times value at first pointer
+    //then move first pointer up 1
     
+    //if second pointer is smaller than first pointer, multiply distance between second and first times value at second pointer
+    //then move second pointer down 1
+    
+    //each time check max area against current max
+    
+    let maxArea = 0;
     let start = 0;
     let end = height.length - 1;
-    let water_levels = [];
     
     while (start < end) {
-        if (height[start] <= height[end]) {
-            water_levels.push(height[start] * (end - start));
-            start++;
-        };
+        let area;
         
-        if (height[start] > height[end]) {
-            water_levels.push(height[end] * (end - start));
+        if (height[start] <= height[end]) {
+            area = (height[start] * (end - start));
+            start++;
+        } else {
+            area = (height[end] * (end - start));
             end--;
         }
-        
+        maxArea = Math.max(maxArea, area);
     }
     
-    return Math.max(...water_levels);
+    return maxArea; 
+    
 };
