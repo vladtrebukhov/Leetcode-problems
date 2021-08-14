@@ -3,13 +3,14 @@
  * @return {number}
  */
 
+//Set solution
 //Keep adding to set if not in set, 
 //keep removing from incremental index starting from start of string if in set
 //Set max to be difference between current pointer and index of removed chars
 var lengthOfLongestSubstring = function(s) {
     if (s.length === 1) return 1;
     
-    let set = new Set(); //w
+    let set = new Set();
     let index = 0;
     let maxLength = 0;
     
