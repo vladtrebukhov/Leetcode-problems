@@ -13,20 +13,20 @@
 var isValidBST = function(root) {
     if (root === null) return true;
     
-    let stack = []; //2
-    let pre = null;
+    let stack = []; //4, 3
+    let prev = null; //5
     
-    while ( root !== null || stack.length > 0) {
-        while (root !== null) {
+    while (root || stack.length) { //4
+        while (root) {
             stack.push(root);
             root = root.left;
         }
         
-        root = stack.pop();
         
-        if (pre !== null && root.val <= pre.val) return false;
-        pre = root;
-        root = root.right;
+        let node = stack.pop(); //3
+        if (prev && node.val <= prev.val) return false;
+        prev = node;
+        root = node.right;
     }
     
     return true;
