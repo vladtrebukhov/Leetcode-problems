@@ -13,8 +13,7 @@
 var invertTree = function(root) {
     if (!root) return null;
     
-    //dfs
-    let stack = [root]; //1, 3
+    let stack = [root];
     
     while (stack.length) {
         let len = stack.length;
@@ -22,17 +21,16 @@ var invertTree = function(root) {
             let node = stack.pop();
             
             if (node.left) {
-                stack.push(node.left);  
+                stack.push(node.left);
             }
-          
+            
             if (node.right) {
                 stack.push(node.right);
-            
-            };
+            }
             
             [node.left, node.right] = [node.right, node.left];
         }
-    };
+    }
     
     return root;
 };
