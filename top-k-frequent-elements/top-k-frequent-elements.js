@@ -3,28 +3,26 @@
  * @param {number} k
  * @return {number[]}
  */
-var topKFrequent = function(nums, k) {
-    let map = {}; //{1: 3, 2: 2, 3: 1}
-    
-    nums.forEach((num, index) => {
-        map[num] = map[num] + 1 || 1;
-    });
-    
-    
-    // [[], [1], [2], [1], [], []]
-    const freq_arr = [...Array(nums.length + 1)].map(value => value = []);
-    
-    for (let key in map) {
-        if (map.hasOwnProperty(key)) {
-            freq_arr[map[key]].push(key);
-        }
-    };
-    
+var topKFrequent = function(nums, k) { 
+    const freq_map = {};
     const result = [];
     
-    for (let i = freq_arr.length - 1; i >= 0; i--) {
-        for (let j = 0; j < freq_arr[i].length; j++) {
-            result.push(freq_arr[i][j]);
+    for (let i = 0; i < nums.length; i++) {
+        freq_map[nums[i]] = freq_map[nums[i]] + 1 || 1;
+    };
+    
+    let order_arr = [...Array(Math.max(...Object.values(freq_map)) + 1)].map(value => value = []);
+    
+
+    for (let key in freq_map) {
+        if (freq_map.hasOwnProperty(key)) {
+            order_arr[freq_map[key]].push(key);
+        }
+    }
+    
+    for (let j = order_arr.length - 1; j >= 0; j--) {
+        for (let l = 0; l < order_arr[j].length; l++) {
+            result.push(order_arr[j][l]);
             if (result.length === k) {
                 return result;
             }
