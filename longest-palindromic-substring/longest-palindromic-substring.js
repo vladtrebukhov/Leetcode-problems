@@ -2,26 +2,11 @@
  * @param {string} s
  * @return {string}
  */
-
-//need to check even and odd palindromes (aa, aaa)
-//loop from 1 to end, for each letter check to the left and to the right of letter
-//if equal, then found palindrome, check against current longest
-//At the same time check, if s[i-1] === s[i], if so, found even palindrome. Check against current longest
-//babad
-//cbbd //b
-//racecar
-//abba
-//aaaa
-//aaaaa
-//abbba
-//xxxxfffff
-//zczcddtattarrattatddaskdlaslkd
-
 var longestPalindrome = function(s) {
-    let longest = s[0];
-    
     if (s === s.split('').reverse().join('')) return s;
-    let curr = s[0]; //rr
+    
+    let curr = s[0]; 
+    let longest = s[0];
     
     for (let i = 1; i < s.length; i++) {
         s[i-1] === s[i] ? curr += s[i] : curr = s[i];
