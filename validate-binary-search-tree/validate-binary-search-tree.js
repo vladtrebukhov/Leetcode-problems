@@ -11,20 +11,17 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    if (root === null) return true;
+    let stack = [];
+    let prev = null;
     
-    let stack = []; //4, 3
-    let prev = null; //5
-    
-    while (root || stack.length) { //4
+    while (root || stack.length) {
         while (root) {
             stack.push(root);
             root = root.left;
         }
         
-        
-        let node = stack.pop(); //3
-        if (prev && node.val <= prev.val) return false;
+        let node = stack.pop();
+        if (prev && prev.val >= node.val) return false;
         prev = node;
         root = node.right;
     }
