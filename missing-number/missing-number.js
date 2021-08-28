@@ -3,9 +3,14 @@
  * @return {number}
  */
 var missingNumber = function(nums) {
-    for (let j = 0; j <= nums.length; j++) {
-        if (!nums.includes(j)) {
-            return j
-        }
+    const set = new Set();
+    
+    for (let num of nums) {
+        set.add(num);
+    };
+    
+    
+    for (let i = 0; i <= nums.length; i++) {
+        if (!set.has(i)) return i
     }
 };
