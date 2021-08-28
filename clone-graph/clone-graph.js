@@ -18,7 +18,7 @@ var cloneGraph = function(node) {
     if (!node) return null;
     
     const map = new Map();
-    const stack = [node]; //
+    const stack = [node]; 
     
     map.set(node, new Node(node.val));
     
