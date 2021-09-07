@@ -15,7 +15,6 @@ var minSubArrayLen = function(target, nums) {
     
     while (right < nums.length) {
         if (count >= target) {
-            
             if (right - left + 1 === 1) {
                 return 1;
             }
