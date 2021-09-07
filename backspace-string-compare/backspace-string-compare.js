@@ -5,7 +5,7 @@
  */
 var backspaceCompare = function(s, t) {    
     const backSpace = (string) => {
-        let result = string; //ab## -> a + #
+        let result = string;
         
         while (result.indexOf('#') >= 0)  {
             if (result.indexOf('#') === 0) {
@@ -13,10 +13,7 @@ var backspaceCompare = function(s, t) {
             } else {
                 result = result.substring(0, result.indexOf('#') - 1) + result.substring(result.indexOf('#') + 1, string.length);
             }
-          
-            
         }
-        
         return result;
     }
     
