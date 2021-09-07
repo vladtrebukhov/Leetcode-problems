@@ -18,11 +18,9 @@ var minSubArrayLen = function(target, nums) {
             if (right - left + 1 === 1) {
                 return 1;
             }
-            
             min = Math.min(min, right - left + 1);
             count -= nums[left];
             left++;
-            
         } else {
             right++;
             count += nums[right];
