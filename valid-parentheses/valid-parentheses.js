@@ -3,50 +3,44 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    // ( -> only 1 
-    // (([ -> only open parens
-    // ]]] -> only closed parens
-    // ()[]{} -> open and closed that match each other
-    // (] -> open and closed that dont match
-    // (}) -> open and closed that match, but another closed or open exists
-    // [] -> open and closed that match
+        //( -> only one invalid
+        //((( -> only open invalid
+        //]]]]] -> only closed invalid
+        //() -> open closed valid
+        //(] -> open closed invalid
+        //({[]}) -> open closed valid
+        //()[]{} -> open closed valid
     
-    //Must need equal amounts of open and closed parens
-    //Create a stack, add to stack whenever we meet open parens
-    //If closed parens, pop off parens from stack and compare to current parens -> if no match, return false
-    //If you meet closed parens first with nothing on the stack, return true (closed parens appears first -> alwasy false)
-      
-    if (s.length === 1) return false;
-    
-    const isOpen = (parens) => {
-        return parens === '(' || parens === '[' || parens === '{';
-    }
-    
-    const isMatching = (open, closed) => {
-        if (open === '(' && closed === ')' || open === '[' && closed === ']' || open === '{' && closed === '}') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        //O(n) time -> O(n) space
+        //Loop through s, whenever encounter open, push to stack
+        //Whenever encounter closed, pop off open from stack, compare open to current closed
+        //If !stack.length when on closed, return false (there is no open on stack to match)
+        //If at end stack.length > 0, false; still open unmatched parens left
 
-    let stack = [];  //
-    
-    for (let i = 0; i < s.length; i++) {
-        if (isOpen(s[i])) {
-            stack.push(s[i]);
-        } else {
-            if (!stack.length) {
+        const matchParens = (currentClosed, stack) => { 
+            const currentOpen = stack.pop();
+          
+            if (currentClosed === ')' && currentOpen !== '(' 
+                || currentClosed === ']' && currentOpen !== '[' 
+                || currentClosed === '}' && currentOpen !== '{') {
                 return false;
             }
-            let open = stack.pop(); 
-            
-            if (!isMatching(open, s[i])) {
-                return false;
-            }
-            
-        }     
-    }
+        };
+        
+        let stack = []; 
     
-    return !stack.length ? true : false;
+        for (let i = 0; i < s.length; i++) {
+            let parens = s[i];
+            
+            //Open case
+            if (parens === '(' || parens === '[' || parens === '{') {
+                stack.push(parens);
+            } else {
+                if (!stack.length || matchParens(parens, stack) === false) {
+                    return false;
+                }
+            }
+        }
+    
+        return stack.length > 0 ? false : true
 };
