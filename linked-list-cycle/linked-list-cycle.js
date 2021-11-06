@@ -10,25 +10,22 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-//head = [3,2,0,-4], pos = 1
+
 var hasCycle = function(head) { 
     if (!head) return false
     
-    let slow = head;
+    //set slow = slow.next, fast = fast.next.next -> compare if equal. If yes, cycle exists
+    
+    let slow = head; //2->0->4
     let fast = head.next;
     
-    while (slow) {
+    while (fast && fast.next) {
         if (slow === fast) {
             return true;
         }
-        
-        if (!fast || !fast.next) {
-            return false;
-        }
-        
         slow = slow.next;
         fast = fast.next.next;
     }
     
-    return true;
+    return false;
 };
