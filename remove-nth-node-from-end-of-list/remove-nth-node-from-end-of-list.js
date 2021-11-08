@@ -11,31 +11,35 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-    let curr = head;
-    let copyCurr = curr;
-    let headCopyCurr = copyCurr;
-    let size = 0;
+    //Need to determine length of linked list
+    //Knowing this, we know can set the next value of node at length - n to next.next
+    //1) Loop through head, incrementing length until end
+    //2) Do second pass until you reach length - n
+    //3) Set node.next = node.next.next
+    //4) Return head of list with removed node
     
-    while (curr) {
-        size++;
-        curr = curr.next;
-    }
-
-    let currCount = 0;
-    const targetPosition = size - n;
+    let list = head;
+    let numberOfNodes = 0;
     
-    while (copyCurr) {
-        if (targetPosition === 0) {
-            return copyCurr.next;
-        }
-        
-        currCount++;
-        
-        if (currCount === targetPosition) {
-            copyCurr.next = copyCurr.next.next;
-            return headCopyCurr;
-        } else {
-            copyCurr = copyCurr.next;
-        }
+    while (list) {
+        numberOfNodes++;
+        list = list.next;
     }
+    
+    let listWithoutNode = head;
+    let headListWithoutNode = listWithoutNode;
+    let count = 1;
+    
+    if (numberOfNodes - n === 0) {
+        return listWithoutNode.next;
+    } 
+    
+    while (count < numberOfNodes - n) {
+        listWithoutNode = listWithoutNode.next;
+        count++;
+    }
+    
+    listWithoutNode.next = listWithoutNode.next.next;
+    
+    return headListWithoutNode;
 };
