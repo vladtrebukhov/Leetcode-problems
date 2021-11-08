@@ -3,29 +3,31 @@
  * @return {number}
  */
 var numIslands = function(grid) {
-    let num_islands = 0;
+    let numberOfIslands = 0;
     
-    const dfs = (grid, i, j) => {
-        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] === '0') {
+    const dfs = (i, j, grid) => {
+        if (i >= grid.length || i < 0 || j >= grid[i].length || j < 0 || grid[i][j] === '0') {
             return;
-        }  
+        }
+            
+        if (grid[i][j] === '1') {
+            grid[i][j] = '0';
+        }
         
-        grid[i][j] = '0';
-        
-        dfs(grid, i + 1, j);
-        dfs(grid, i - 1, j);
-        dfs(grid, i, j+1);
-        dfs(grid, i, j-1);
+        dfs(i - 1, j, grid);
+        dfs(i + 1, j, grid);
+        dfs(i, j - 1, grid);
+        dfs(i, j + 1, grid);
     }
     
     for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length;j++) {
+        for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === '1') {
-                num_islands++;
-                dfs(grid, i, j);
+                numberOfIslands++;
+                dfs(i, j, grid);
             }
         }
     }
     
-    return num_islands;
+    return numberOfIslands;
 };
