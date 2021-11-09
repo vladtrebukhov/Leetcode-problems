@@ -3,35 +3,47 @@
  * @return {number}
  */
 
-//Total will be at least the length of string, each character can be a palindrome itself
-//abc -> 3
-//aba - > 4 
-//sxdsdssaa -> dsd, sds, ss, aa + 9 individual strings -> 13  //6
-//aaa -> a, a, a, aa, aa, aaa -> 6
-//racecar -> 10
-var countSubstrings = function(s) {    
-    let start = 0;
-    let pointer = start;
-    let end = s.length - 1;
-    let count = 0; //3
-
-    //aba -> 4
-    const isPalindrome = (s) => {
-        return s.split('').reverse().join('') === s;
-    }
+var countSubstrings = function(s) {
+    //palindrome -> same forwards and backwards
+    //palindrome can be built from center, so left and right characters must match
+    //ex: racecar -> starting with e, check left and right cec, aceca etc...
+    //palindrome will at least be s long as each individual char is a palindrome
     
-    while (start <= end) {
-        if (isPalindrome(s.substring(start, pointer + 1))) {
-            count++;
+    //Palindrome if:
+    //Single character: 'a'
+    //Two of the same character: 'aa'
+    //If length > 2, s[left] === s[right] 'aaa'
+    
+    //Loop through s, incremeting count at each character
+    //If s[right] === s[i], increment counter (found even case)
+    //While s[left] === s[right], keep incrementing counter (found odd case)
+    
+    let counter = 0;
+    let left;
+    let right;
+    
+    //racecar
+    //aaa
+    //"aaaa"
+    //
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i];
+        
+        counter++;
+        right = i + 1;
+        left = i - 1;
+            
+        while (s[right] === char) {
+            counter++;
+            right++;
         }
         
-        pointer++;
-        
-        if (pointer === s.length) {
-            start++;
-            pointer = start;
-        }
+        while (s[right] === s[left] && s[right] && s[left]) {
+             counter++;
+             right++;
+             left--;
+        } 
     }
     
-    return count;
+    return counter;
 };
