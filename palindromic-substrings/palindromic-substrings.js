@@ -21,11 +21,7 @@ var countSubstrings = function(s) {
     let counter = 0;
     let left;
     let right;
-    
-    //racecar
-    //aaa
-    //"aaaa"
-    //
+
     for (let i = 0; i < s.length; i++) {
         let char = s[i];
         
