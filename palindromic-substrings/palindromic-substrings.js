@@ -14,9 +14,9 @@ var countSubstrings = function(s) {
     //Two of the same character: 'aa'
     //If length > 2, s[left] === s[right] 'aaa'
     
-    //Loop through s, incremeting count at each character
-    //If s[right] === s[i], increment counter (found even case)
-    //While s[left] === s[right], keep incrementing counter (found odd case)
+    //Loop through s, incrementing count at each character
+    //While s[right] === s[i], increment counter and right pointer (to keep looking for same character) -> 'raceeecar'
+    //While s[left] === s[right], keep incrementing counter. Decrement left and increment right pointers. -> 'ceeec' in above example
     
     let counter = 0;
     let left;
