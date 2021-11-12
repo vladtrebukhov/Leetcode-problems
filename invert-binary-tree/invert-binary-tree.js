@@ -13,19 +13,20 @@
 var invertTree = function(root) {
     if (!root) return null;
     
-    let stack = [root];
+    let queue = [root];
     
-    while (stack.length) {
-        let len = stack.length;
+      while (queue.length) {
+        let len = queue.length;
+        
         for (let i = 0; i < len; i++) {
-            let node = stack.pop();
+            let node = queue.shift();
             
             if (node.left) {
-                stack.push(node.left);
+                queue.push(node.left);
             }
             
             if (node.right) {
-                stack.push(node.right);
+                queue.push(node.right);
             }
             
             [node.left, node.right] = [node.right, node.left];
