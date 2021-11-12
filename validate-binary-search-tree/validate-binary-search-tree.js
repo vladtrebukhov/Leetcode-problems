@@ -13,12 +13,13 @@
 var isValidBST = function(root) {
    if (!root) return;
     
-   let stack = []; //5, 1
+   let stack = [];
    let prev = null; 
     
-  //Can do pre, in, post -order traversals
-  //In order is what we want, because it would be sorted smallest to largest left -> right
-  //In order traversal and check that parent node is larger than 
+    //Can do pre, in, post -order traversals
+    //In order is what we want, because it would be sorted smallest to largest left -> right
+    //When we pop off node, set this as a previous node so next iterations we can compare previous against current node values
+    
     
   while (root || stack.length) {
       while (root) {
