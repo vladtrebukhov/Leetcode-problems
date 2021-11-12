@@ -11,27 +11,26 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-  //   2
-  //  / \
-  // 1   3   
+   if (!root) return;
     
-    if (!root) return false;
+   let stack = []; //5, 1
+   let prev = null; 
     
-    let stack = []; //4,3
-    let prev = null; //5
+  //Can do pre, in, post -order traversals
+  //In order is what we want, because it would be sorted smallest to largest left -> right
+  //In order traversal and check that parent node is larger than 
     
-    while (root || stack.length) {
-        while (root) {
-            stack.push(root);
-            root = root.left;
-        }
-        
-        let node = stack.pop();
-        if (prev && node.val <= prev.val) return false;
-        prev = node;
-        root = node.right;
-    }
+  while (root || stack.length) {
+      while (root) {
+          stack.push(root);
+          root = root.left;
+      }
+      
+      let node = stack.pop();
+      if (prev && prev.val >= node.val) return false;
+      prev = node;
+      root = node.right;
+  };
     
-    return true;
-    
+  return true;
 }
