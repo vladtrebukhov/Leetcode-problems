@@ -12,13 +12,20 @@
  * @return {TreeNode}
  */
 var buildTree = function(preorder, inorder) {
-    if (!preorder.length || !inorder.length) {
-        return null;
-    }
+   //preorder -> (nlr) [3,9,20,15,7] -> first value is root
+   //inorder -> (lnr) [9,3,15,20,7] -> ordered from left to right
+   //Anything to left of current root is left node, anything to right is right node
+
+    //[3,9,20,15,7]
+    //[9,3,15,20,7] 
+
+    if (!preorder.length || !inorder.length) return null;
     
-    let root = new TreeNode(preorder[0]);
-    let mid = inorder.indexOf(preorder[0]); 
-    root.left = buildTree(preorder.slice(1, mid+1), inorder.slice(0, mid));
-    root.right = buildTree(preorder.slice(mid+1, preorder.length), inorder.slice(mid+1, inorder.length));
-    return root;
+    let head = new TreeNode(preorder[0]);
+    let indexOfHead = inorder.indexOf(preorder[0]);
+    
+    head.left = buildTree(preorder.slice(1, indexOfHead + 1), inorder.slice(0, indexOfHead));
+    head.right = buildTree(preorder.slice(indexOfHead + 1, preorder.length), inorder.slice(indexOfHead + 1, inorder.length));
+    
+    return head;
 };
