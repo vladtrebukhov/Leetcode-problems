@@ -17,7 +17,8 @@ var uniquePaths = function(m, n) {
     //Since we're coming from two directions, up and right (in this case down and left since backwards)
     //Some cells will be visited twice, so they will add number of paths from both sides, right and down.
     //Once loop completes, we've arrived at [0,0] and have added all paths started from [0,1] and [1,0] so return grid[0][0]
-
+    //Time -> O(n * m), Space -> O(n * m) for grid to hold all previous number of paths
+    
     //Creates m * n grid to store previous number of paths from cell at each index
     let grid = [...Array(m)].map(value => [...Array(n)].fill(0));
     
