@@ -12,6 +12,8 @@
  */
 
 var zigzagLevelOrder = function(root) {
+    
+    //
     if (!root) return [];
     
     let queue = [root];
@@ -33,11 +35,10 @@ var zigzagLevelOrder = function(root) {
                 queue.push(node.right);
             }
             
-            levelOrder.push(node.val);
+            level % 2 !== 0 ? levelOrder.unshift(node.val) : levelOrder.push(node.val)
         }
         
-        levelOrder = level % 2 !== 0 ? levelOrder.reverse() : levelOrder;
-        
+        // levelOrder = level % 2 !== 0 ? levelOrder.reverse() : levelOrder;
         level++;
         result.push(levelOrder);
     }
