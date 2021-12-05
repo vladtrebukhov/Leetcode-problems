@@ -4,8 +4,6 @@
  * @return {number[]}
  */
 var searchRange = function(nums, target) {
-    //Find start index, then find end index each with Bin search
-    
     let start = 0;
     let end = nums.length - 1;
     let result = [];
@@ -24,23 +22,24 @@ var searchRange = function(nums, target) {
     if (nums[start] !== target) return [-1,-1];
     
     result[0] = start;
-    end = nums.length - 1;
+    end = nums.length -1;
     
+    //[5,7,7,8,8,10,10] target = 10
     //Find end index
     while (start < end) {
         let mid = Math.floor((start + end) / 2);
         
         if (nums[mid] === target) {
-            if (nums[mid + 1] && nums[mid+1] > nums[mid]) {
+            if (nums[mid+1] && nums[mid+1] > nums[mid]) {
                 result[1] = mid;
                 return result;
             }
-            start = mid + 1
+            start = mid + 1;
         } else {
             end = mid;
         }
     }
-
+    
     result[1] = end;
-    return result
+    return result;
 };
