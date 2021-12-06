@@ -4,6 +4,12 @@
  * @return {boolean}
  */
 var searchMatrix = function(matrix, target) {
+    //Trivial solution - loop through each row, perform binary search -> O(n*logn)
+    
+    //O(n x m) solution
+    //Select top right corner, check if target > or < than current cell
+    //Move index of cell accordingly until out of bounds or target found
+    
     let x = matrix[0].length - 1;
     let y = 0;
     
