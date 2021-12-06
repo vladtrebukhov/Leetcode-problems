@@ -3,28 +3,24 @@
  * @param {number} target
  * @return {number}
  */
-var search = function(nums, target) {
-    
+var search = function(nums, target) {   
     let start = 0;
     let end = nums.length - 1;
-    
-    //[0,1,2,4,5,6,7]
-    //[8,1,2,3,4]
+
     while (start < end) {
         let mid = Math.floor((start + end) / 2);
         
-        if (nums[mid] >= nums[end]) {
+        if (nums[mid] > nums[end]) {
             start = mid + 1;
         } else {
             end = mid;
         }
     }
-    
-    console.log(start, end)
+
     if (nums[0] < nums[nums.length - 1]) {
         end = nums.length - 1;
     } else {
-        if (target >= nums[0] && target >= nums[end]) {
+        if (target >= nums[0]) {
             start = 0;
         } else {
             end  = nums.length - 1;
@@ -45,4 +41,5 @@ var search = function(nums, target) {
     }
     
     return - 1;
+};
 };
