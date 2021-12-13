@@ -14,13 +14,19 @@
 var zigzagLevelOrder = function(root) {
     if (!root) return [];
     
-    let queue = [root];
-    let result = [];
-    let level = 0; 
+    //Since level order, do BFS with queue
+    //Even: left -> right
+    //Odd:  right -> left
+    //Keep track of level while doing BFS, if current level even then push
+    //Onto queue
+    
+    let level = 0; //2
+    let result = []; //[3], [20,9]
+    let queue = [root]; //15,7
     
     while (queue.length) {
         let len = queue.length;
-        let levelOrder = [];
+        let zigZag = []; //20,9
         
         for (let i = 0; i < len; i++) {
             let node = queue.shift();
@@ -33,12 +39,12 @@ var zigzagLevelOrder = function(root) {
                 queue.push(node.right);
             }
             
-            level % 2 !== 0 ? levelOrder.unshift(node.val) : levelOrder.push(node.val)
+            level % 2 === 0 ? zigZag.push(node.val) : zigZag.unshift(node.val);
         }
         
+        result.push(zigZag);
         level++;
-        result.push(levelOrder);
     }
-    
-    return result; 
+        
+    return result;
 };
