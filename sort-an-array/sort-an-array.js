@@ -3,10 +3,10 @@
  * @return {number[]}
  */
 var sortArray = function(nums) {
-    //If curr > next, swap, else keep iterating
-    //Else while curr < prev, keep swapping curr with prev
-    //Save start index as we'll be decrementing i. Once finished, reset i to initial i
-    //O(n^2) -> Insertion Sort
+// If curr > next, swap
+// Else while curr < prev, keep swapping curr with prev
+// Save start index as we'll be decrementing i. Once finished, reset i to initial i
+// O(n^2) -> Insertion Sort
 //     let startIndex;
     
 //     for (let i = 0; i < nums.length - 1; i++) {
@@ -29,54 +29,48 @@ var sortArray = function(nums) {
 //     return nums;
     
     //O(nlogn) -> Quick sort
-    //An element is sorted if all elements to the left are <= and all elements to the right are >= 
+    //An element is sorted if all elements to the left are <= and all elements to the right are >
     //Pick first element as Pivot. left and right pointers move until left > pivot and right < pivot
     //Swap the elements
     //Continue until right is past left. Swap right with pivot
     //Run recursively from start to pivot and from pivot to end
-                           
-    //[5, 8, 7, 12, 12, 14, 15]
-    
-    //[1,2,3,5]
    
-//     const partition = (left, right) => {
-//         let pivot = nums[left];
+    const partition = (left, right) => {
+        let pivot = nums[left];
         
-//         let i = left;
-//         let j = right;
+        let i = left;
+        let j = right;
         
-//         while (i < j) {
-//             while (nums[i] <= pivot) {
-//                 i++;
-//             }
+        while (i < j) {
+            while (nums[i] <= pivot) {
+                i++;
+            }
             
-//             while(nums[j] >= pivot) {
-//                 j--;
-//             }
+            while(nums[j] >= pivot) {
+                j--;
+            }
             
-//             if (i < j) {
-//                 [nums[i], nums[j]] = [nums[j], nums[i]];
-//             }
-//         }
+            if (i < j) {
+                [nums[i], nums[j]] = [nums[j], nums[i]];
+            }
+        }
         
-//         [nums[left], nums[j]] = [nums[j], nums[left]];
+        [nums[left], nums[j]] = [nums[j], nums[left]];
         
-//         return j;
-//     }
+        return j;
+    }
     
 
          
-//     const quickSort = (left, right) => {
-//         if (left < right) {
-//             let mid = partition(left, right);
-//             quickSort(left, mid);
-//             quickSort(mid+1, right);
-//         }
-//         return nums;
-//     }
+    const quickSort = (left, right) => {
+        if (left < right) {
+            let mid = partition(left, right);
+            quickSort(left, mid);
+            quickSort(mid+1, right);
+        }
+        return nums;
+    }
     
-//     return quickSort(0, nums.length - 1);
-    
-    return nums.sort((a,b) => a - b)
-    
+    return quickSort(0, nums.length - 1);
+    };
 };
