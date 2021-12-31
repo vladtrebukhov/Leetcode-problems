@@ -14,7 +14,7 @@ var rightSideView = function(root) {
     if (!root) return [];
     
     let result = [];
-    let queue = [root]; //2,3
+    let queue = [root];
     
     while (queue.length) {
         let len = queue.length;
