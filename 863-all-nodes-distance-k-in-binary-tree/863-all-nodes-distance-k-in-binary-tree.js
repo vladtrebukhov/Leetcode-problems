@@ -45,7 +45,6 @@ var distanceK = function(root, target, k) {
         let edges = [];
 
         if (count === k) {
-            console.log(nodes)
             for (let i = 0; i < nodes.length; i++) {
                 if (nodes[i] !== undefined && nodes[i] !== null) {
                     result.push(nodes[i]);
