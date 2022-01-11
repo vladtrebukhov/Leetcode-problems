@@ -4,22 +4,29 @@
  */
 var letterCombinations = function(digits) {
    let map = {'2':'abc', '3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'};
+  
+    //For each number in digits, pull out corresponding letters from map
+    //Loop through each character adding to an empty string 
+    //Inside loop, call recursive function with new string and index pointing to next digit in sequence to repeat process
+    //Since you're combining one character from each digit at a time, max length of currString 
+    //Is the length of digits. Once curr string length = digits length, add to output and return from recursion stack
     
     if (!digits.length) return [];
     
-    let output = [];
-    
-    const backtracking = (i, currString) => {
+    const output = [];
+
+    const backTracking = (digitsIndex, currString) => {
         if (currString.length === digits.length) {
             output.push(currString);
             return;
         }
-        for (let j = 0; j < map[digits[i]].length; j++) {
-            backtracking(i + 1, currString + map[digits[i]][j]);
+        for (let i = 0; i < map[digits[digitsIndex]].length; i++) {
+            const char = map[digits[digitsIndex]][i];
+            backTracking(digitsIndex + 1, currString + char);
         }
     }
     
-    backtracking(0, "");
+    backTracking(0, "");
     
     return output;
 };
