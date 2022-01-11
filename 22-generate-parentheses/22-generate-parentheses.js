@@ -37,6 +37,5 @@ var generateParenthesis = function(n) {
     
     backtracking("");
     
-    console.log(output)
     return output;
 };
