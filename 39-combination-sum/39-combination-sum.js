@@ -7,15 +7,14 @@ var combinationSum = function(candidates, target) {
     if (Math.min(...candidates) > target) return [];
     
     let result = [];
-    let seen = {}; //{'223': 1, }
+    let seen = {};
     
-    //[[2,2,3]]
-    //[2,3,2], [3,2,2], [7]
     const helper = (arr, sum) => {
         if (sum === target) {
-          let sequence = arr.sort((a,b) => a - b).join(''); //'223'
+          const sequence = arr.sort((a,b) => a - b).join('');
+            
           if (seen[sequence]) {
-            return
+            return;
           } else {
             result.push(arr);
             seen[sequence] = 1;
