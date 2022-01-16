@@ -14,6 +14,8 @@ var longestPalindrome = function(s) {
     //Once a character is reached where char != original, check left and current char if equal 
     //If equal, keep expanding left and right -> aaa, aaab, baaab, cbaaabc
     
+    if (s.split('').reverse().join('') === s) return s;
+    
     let left = 0;
     let right = 0;
     let output = s[0];
