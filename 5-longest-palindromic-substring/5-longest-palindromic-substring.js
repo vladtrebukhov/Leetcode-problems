@@ -18,9 +18,7 @@ var longestPalindrome = function(s) {
     let right = 0;
     let output = s[0];
     let startLeft = 0;
-    //raceeecar
-    
-    //"raceeecar"
+
     while (right < s.length) {
         while (s[right] === s[left]) { //e === e
             output = s.substring(left, right + 1).length > output.length ? s.substring(left, right + 1) : output;
