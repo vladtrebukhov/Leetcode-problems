@@ -6,6 +6,8 @@ var subsets = function(nums) {
     let result = [[]];
     let seenMap = {};
     
+    //NOT required, only required to pass one leetcode test case
+    //Problem says result can be in any order, but any order as long as numbers are sorted ascending
     nums.sort((a,b) => a - b);
     
     const backtrack = (numsLeft) => {
@@ -13,7 +15,7 @@ var subsets = function(nums) {
             return;
         };
         
-        const numsLeftKey = numsLeft.join(''); //'2410'
+        const numsLeftKey = numsLeft.join('');
         
         if (!(numsLeftKey in seenMap)) {
             result.push(numsLeft); 
