@@ -7,7 +7,6 @@ var exist = function(board, word) {
     let found = false;
     
     const dfs = (index, i, j) => {
-
         if (index == word.length) found = true;
         
         if (i < 0 || j < 0 || i >= board.length || j >= board[i].length || board[i][j] !== word[index]) {
