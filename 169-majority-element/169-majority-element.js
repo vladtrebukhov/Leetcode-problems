@@ -3,10 +3,7 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-   const majority = nums.length / 2;
-    
-    //{3:1}
-    
+    const majority = nums.length / 2;
     const map = {};
     
     for (let i = 0; i < nums.length; i++) {
